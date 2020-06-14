@@ -241,13 +241,23 @@ function love.update(dt)
         player1.dy = 0
     end
 
-    -- player 2
-    if love.keyboard.isDown('up') then
-        player2.dy = -PADDLE_SPEED
-    elseif love.keyboard.isDown('down') then
-        player2.dy = PADDLE_SPEED
+    -- player 2 : the AI
+    -- Set AI position towards the ball at a set rate
+    -- move by : 
+
+    -- if love.keyboard.isDown('up') then
+    --     player2.dy = -PADDLE_SPEED
+    -- elseif love.keyboard.isDown('down') then
+    --     player2.dy = PADDLE_SPEED
+    
+    --closer it is the slower it should move
+    if player2.y > ball.y then
+        player2.dy = -PADDLE_SPEED * math.abs(player2.y - ball.y) / 5 
+    elseif player2.y < ball.y then
+        player2.dy = PADDLE_SPEED * math.abs(player2.y - ball.y) / 5
     else
         player2.dy = 0
+    
     end
 
     -- update our ball based on its DX and DY only if we're in play state;
