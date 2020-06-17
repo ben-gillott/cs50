@@ -16,6 +16,7 @@ ScoreState = Class{__includes = BaseState}
 ]]
 function ScoreState:enter(params)
     self.score = params.score
+    --load medal images
 end
 
 function ScoreState:update(dt)
@@ -34,4 +35,13 @@ function ScoreState:render()
     love.graphics.printf('Score: ' .. tostring(self.score), 0, 100, VIRTUAL_WIDTH, 'center')
 
     love.graphics.printf('Press Enter to Play Again!', 0, 160, VIRTUAL_WIDTH, 'center')
+
+    if (self.score == 0) then
+        love.graphics.setColor(205, 127, 50)
+    elseif self.score == 1 then
+        love.graphics.setColor(192, 192, 192)
+    else
+        love.graphics.setColor(255, 215, 0)
+    end
+    love.graphics.circle("fill", VIRTUAL_WIDTH / 2, 200, 20)
 end
